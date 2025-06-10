@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "../styles/globals.css";
 import vazirFont from "@/constants/localFonts";
 
 export const metadata: Metadata = {
