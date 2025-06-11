@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
 import vazirFont from "@/constants/localFonts";
+import Header from "./Header";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,8 +14,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${vazirFont} antialiased`}>{children}</body>
+    <html lang="fa" dir="rtl">
+      <body className={`${vazirFont} font-sans antialiased`}>
+        <Header />
+        <div className="container xl:max-w-screen-xl">{children}</div>
+      </body>
     </html>
   );
 }
