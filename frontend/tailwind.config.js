@@ -10,11 +10,7 @@ function withOpacity(variableName) {
   };
 }
 module.exports = {
-  content: [
-    "./src/components/**/*.{ts,tsx}",
-    "./src/common/**/*.{ts,tsx}",
-    "./src/app/**/*.{ts,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
