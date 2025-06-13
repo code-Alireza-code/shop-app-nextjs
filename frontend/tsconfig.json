@@ -30,7 +30,8 @@
       "@/hooks/*": ["./src/hooks/*"],
       "@/public/*": ["./public/*"],
       "@/styles/*": ["./src/styles/*"],
-      "@/providers/*": ["./src/providers/*"]
+      "@/providers/*": ["./src/providers/*"],
+      "@/types/*": ["./src/types/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
