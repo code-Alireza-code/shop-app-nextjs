@@ -14,7 +14,7 @@ function AuthPage() {
         {formStep === 1 ? (
           <GetOtp setFormStep={setFormStep} setPhoneNumber={setPhoneNumber} />
         ) : (
-          <CheckOtp />
+          <CheckOtp phoneNumber={phoneNumber} setFormStep={setFormStep} />
         )}
       </div>
     </div>

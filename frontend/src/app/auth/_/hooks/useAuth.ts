@@ -1,4 +1,4 @@
-import { getOtpApi } from "@/services/authService";
+import { checkOtpApi, getOtpApi } from "@/services/authService";
 import { BackendError } from "@/types/Error";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
@@ -8,7 +8,7 @@ export const useGetOtp = () => {
     mutationFn: getOtpApi,
     retry: false,
     onSuccess: (data) => {
-      toast.success(data.message, { duration: 15000 });
+      toast.success(data.message, { duration: 10000 });
     },
     onError: (err: unknown) => {
       toast.success(
@@ -19,4 +19,22 @@ export const useGetOtp = () => {
   });
 
   return { getOtp, isGettingOtp };
+};
+
+export const useCheckOtp = () => {
+  const { mutateAsync: checkOtp, isPending: isCheckingOtp } = useMutation({
+    mutationFn: checkOtpApi,
+    retry: false,
+    onSuccess: (data) => {
+      toast.success(data.message);
+    },
+    onError: (err: unknown) => {
+      toast.success(
+        (err as BackendError).response.data.message ||
+          "خطا هنگام بررسی کد تایید"
+      );
+    },
+  });
+
+  return { checkOtp, isCheckingOtp };
 };
