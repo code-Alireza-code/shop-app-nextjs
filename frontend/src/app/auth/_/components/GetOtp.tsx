@@ -47,7 +47,7 @@ function GetOtp({ setFormStep, setPhoneNumber }: GetOtpProps) {
   }, [setFocus]);
 
   const { getOtp, isGettingOtp } = useGetOtp();
-  const handleCheckOtp = async (formData: GetOtpformData) => {
+  const handleGetOtp = async (formData: GetOtpformData) => {
     await getOtp(formData, {
       onSuccess: (data: unknown) => {
         setFormStep(2);
@@ -66,7 +66,7 @@ function GetOtp({ setFormStep, setPhoneNumber }: GetOtpProps) {
       </p>
       <form
         className="flex flex-col gap-y-7"
-        onSubmit={handleSubmit(handleCheckOtp)}
+        onSubmit={handleSubmit(handleGetOtp)}
       >
         <TextField {...register("phoneNumber")} errors={errors} />
         <button
