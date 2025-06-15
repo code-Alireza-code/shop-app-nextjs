@@ -1,4 +1,8 @@
-import { checkOtpApi, getOtpApi } from "@/services/authService";
+import {
+  checkOtpApi,
+  completeProfileApi,
+  getOtpApi,
+} from "@/services/authService";
 import { BackendError } from "@/types/Error";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
@@ -6,7 +10,6 @@ import toast from "react-hot-toast";
 export const useGetOtp = () => {
   const { mutateAsync: getOtp, isPending: isGettingOtp } = useMutation({
     mutationFn: getOtpApi,
-    retry: false,
     onSuccess: (data) => {
       toast.success(data.message, { duration: 10000 });
     },
@@ -24,7 +27,6 @@ export const useGetOtp = () => {
 export const useCheckOtp = () => {
   const { mutateAsync: checkOtp, isPending: isCheckingOtp } = useMutation({
     mutationFn: checkOtpApi,
-    retry: false,
     onSuccess: (data) => {
       toast.success(data.message);
     },
@@ -37,4 +39,22 @@ export const useCheckOtp = () => {
   });
 
   return { checkOtp, isCheckingOtp };
+};
+
+export const useCompleteProfile = () => {
+  const { mutateAsync: completeProfile, isPending: isCompletingProfile } =
+    useMutation({
+      mutationFn: completeProfileApi,
+      onSuccess: (data) => {
+        toast.success(data.message);
+      },
+      onError: (err: unknown) => {
+        toast.success(
+          (err as BackendError).response.data.message ||
+            "خطا هنگام ارسال اطلاعات به سرور"
+        );
+      },
+    });
+
+  return { completeProfile, isCompletingProfile };
 };
