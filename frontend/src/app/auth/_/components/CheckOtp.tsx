@@ -31,11 +31,16 @@ function CheckOtp({ setFormStep, phoneNumber }: CheckOtpProps) {
     register,
     formState: { errors },
     handleSubmit,
+    setFocus,
   } = useForm<CheckOtpformData>({ resolver: zodResolver(validationSchema) });
   const [counter, setCounter] = useState(COUNTER_TIME);
   const { getOtp } = useGetOtp();
   const { checkOtp, isCheckingOtp } = useCheckOtp();
   const router = useRouter();
+
+  useEffect(() => {
+    setFocus("otp");
+  }, [setFocus]);
 
   useEffect(() => {
     if (counter > 0)
@@ -55,8 +60,9 @@ function CheckOtp({ setFormStep, phoneNumber }: CheckOtpProps) {
     await checkOtp(
       { ...formdata, phoneNumber },
       {
-        onSuccess: () => {
-          router.push("/");
+        onSuccess: ({ user }) => {
+          if (user.isActive) return router.push("/");
+          router.push("/complete-profile");
         },
       }
     );
