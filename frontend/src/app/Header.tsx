@@ -5,7 +5,6 @@ import Link from "next/link";
 
 function Header() {
   const { isLaodingUser, user } = useGetUser();
-  console.log({ isLaodingUser, user });
   return (
     <header
       className={`shadow-md mb-10 sticky top-0 transition-all duration-200 ${
@@ -31,7 +30,9 @@ function Header() {
           </li>
           <li>
             {user ? (
-              <Link href="/profile">{user.name || "کاربر"}</Link>
+              <Link href={user.role === "ADMIN" ? "/admin" : "/profile"}>
+                {user.name || "کاربر"}
+              </Link>
             ) : (
               <Link href="/auth" className="block py-2">
                 ورود

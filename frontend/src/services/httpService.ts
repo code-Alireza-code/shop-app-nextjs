@@ -13,12 +13,12 @@ const app = axios.create({
   withCredentials: true,
 });
 
-app.interceptors.response.use(
+app.interceptors.request.use(
   (res) => res,
   (err) => Promise.reject(err)
 );
 
-app.interceptors.request.use(
+app.interceptors.response.use(
   (res) => res,
   async (err: AxiosError) => {
     const originalConfig = err.config as CustomAxiosRequestConfig;
