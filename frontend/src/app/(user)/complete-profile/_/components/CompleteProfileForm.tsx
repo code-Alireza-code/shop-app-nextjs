@@ -1,6 +1,6 @@
 "use client";
 
-import { useCompleteProfile } from "@/app/auth/_/hooks/useAuth";
+import { useCompleteProfile } from "@/app/(user)/auth/_/hooks/useAuth";
 import TextField from "@/ui/TextField";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";

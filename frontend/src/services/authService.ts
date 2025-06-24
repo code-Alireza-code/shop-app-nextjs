@@ -1,6 +1,6 @@
-import { GetOtpformData } from "@/app/auth/_/components/GetOtp";
+import { GetOtpformData } from "@/app/(user)/auth/_/components/GetOtp";
 import http from "./httpService";
-import { CompleteProfileFormDataType } from "@/app/complete-profile/_/components/CompleteProfileForm";
+import { CompleteProfileFormDataType } from "@/app/(user)/complete-profile/_/components/CompleteProfileForm";
 
 export async function getOtpApi(data: GetOtpformData) {
   return http.post("/user/get-otp", data).then(({ data }) => data.data);
