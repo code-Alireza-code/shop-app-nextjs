@@ -8,7 +8,7 @@ function Sidebar() {
           <Link href="/">خانه</Link>
         </li>
         <li>
-          <Link href="/me">اطلاعات کاربری</Link>
+          <Link href="/profile/me">اطلاعات کاربری</Link>
         </li>
       </ul>
     </div>

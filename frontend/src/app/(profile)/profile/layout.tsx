@@ -3,7 +3,7 @@ import vazirFont from "@/constants/localFonts";
 import Providers from "@/providers/Providers";
 import { Metadata } from "next";
 import { ReactNode } from "react";
-import Sidebar from "./Sidebar";
+import Sidebar from "./_/components/Sidebar";
 
 export const metadata: Metadata = {
   title: "پروفایل کاربر | نکس شاپ",
