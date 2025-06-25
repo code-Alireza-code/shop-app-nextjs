@@ -83,10 +83,7 @@ button {
 }
 button:disabled {
   cursor: not-allowed;
-  background-color: rgb(var(--color-secondary-300), 0.5);
-  color: rgb(var(--color-secondary-700), 0.5);
   pointer-events: none;
-  box-shadow: none;
 }
 
 /* inupt number */

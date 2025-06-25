@@ -28,3 +28,7 @@ export async function getUserApi() {
 export async function updateUserApi(data: ProfileFormDataType) {
   return http.patch("/user/update", data).then(({ data }) => data.data);
 }
+
+export async function logoutUserApi() {
+  return http.post("/user/logout").then(({ data }) => data.data);
+}
