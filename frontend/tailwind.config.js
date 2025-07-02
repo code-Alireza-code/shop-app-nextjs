@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import { fontFamily } from "tailwindcss/defaultTheme";
+import tailwindcssForms from "@tailwindcss/forms";
 
 function withOpacity(variableName) {
   return ({ opacityValue }) => {
@@ -50,6 +51,11 @@ module.exports = {
         "input-focus": "0 12px 24px -8px rgb(var(--color-primary-300))",
       },
     },
+    plugins: [],
   },
-  plugins: ["@tailwindcss/forms"],
+  plugins: [
+    tailwindcssForms({
+      strategy: "class",
+    }),
+  ],
 };
