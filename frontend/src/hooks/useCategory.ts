@@ -2,10 +2,10 @@ import { getAllCategoriesApi } from "@/services/categoryService";
 import { Category } from "@/types/Category";
 import { useQuery } from "@tanstack/react-query";
 
-export const useGetAllCategories = () => {
+export const useGetAllCategories = (query: string = "") => {
   const { data, isLoading: isLoadingCategories } = useQuery({
-    queryKey: ["all-categories"],
-    queryFn: () => getAllCategoriesApi(),
+    queryKey: ["all-categories", query],
+    queryFn: () => getAllCategoriesApi(query),
     retry: 2,
   });
 
