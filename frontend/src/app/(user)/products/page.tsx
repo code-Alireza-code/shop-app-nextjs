@@ -12,11 +12,6 @@ function ProductsPage() {
     queryString.stringify(Object.fromEntries(searchParams.entries()))
   );
   const { categories, isLoadingCategories } = useGetAllCategories();
-
-  console.log(
-    queryString.stringify(Object.fromEntries(searchParams.entries()))
-  );
-
   return (
     <div>
       <h1 className="text-xl font-bold mb-6">صفحه محصولات</h1>

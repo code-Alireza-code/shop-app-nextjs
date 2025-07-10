@@ -11,9 +11,13 @@ type Props = {
 };
 
 function CategorySidebar({ categories }: Props) {
-  const [categoryParams, setCategoryParams] = useState<string[]>([]);
-  const router = useRouter();
   const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const [categoryParams, setCategoryParams] = useState<string[]>(() => {
+    const param = searchParams.get("category");
+    return param ? param.split(",") : [];
+  });
 
   const handleChangeCategory = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
