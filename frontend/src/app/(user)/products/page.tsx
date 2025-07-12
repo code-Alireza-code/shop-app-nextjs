@@ -1,17 +1,16 @@
 "use client";
 
-import { useGetAllCategories } from "@/hooks/useCategory";
-import { useGetAllProducts } from "@/hooks/useProduct";
 import CategorySidebar from "./[slug]/CategorySidebar";
 import queryString from "query-string";
 import { useSearchParams } from "next/navigation";
+import { useProductsData } from "@/hooks/useProductsData";
 
 function ProductsPage() {
   const searchParams = useSearchParams();
-  const { products, isLoadingProducts } = useGetAllProducts(
+  const { categories, products } = useProductsData(
     queryString.stringify(Object.fromEntries(searchParams.entries()))
   );
-  const { categories, isLoadingCategories } = useGetAllCategories();
+
   return (
     <div>
       <h1 className="text-xl font-bold mb-6">صفحه محصولات</h1>
