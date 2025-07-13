@@ -4,8 +4,12 @@ import CategorySidebar from "./[slug]/CategorySidebar";
 import queryString from "query-string";
 import { useSearchParams } from "next/navigation";
 import { useProductsData } from "@/hooks/useProductsData";
+import toLocaleDateString from "@/utils/dateFormatter";
+import Link from "next/link";
 
-function ProductsPage() {
+import React, { Suspense } from "react";
+
+function ProductsContent() {
   const searchParams = useSearchParams();
   const { categories, products } = useProductsData(
     queryString.stringify(Object.fromEntries(searchParams.entries()))
@@ -18,16 +22,33 @@ function ProductsPage() {
         <CategorySidebar categories={categories} />
         <div className="col-span-3 grid grid-cols-3 gap-4 auto-rows-max">
           {products?.map((product) => (
-            <div
+            <Link
+              href={`/products/${product.slug}`}
               key={product._id}
-              className="rounded-xl text-center shadow-md p-4"
+              className="hover:shadow-xl hover:scale-105 m-2"
             >
-              <h2 className="font-bold">{product.title}</h2>
-            </div>
+              <div className="rounded-xl border text-center shadow-md p-4">
+                <h2 className="font-bold text-xl mb-4">{product.title}</h2>
+                <div className="mb-4">
+                  <span>تاریخ ساخت‌: </span>
+                  <span className="font-bold">
+                    {toLocaleDateString(product.createdAt)}
+                  </span>
+                </div>
+              </div>
+            </Link>
           ))}
         </div>
       </div>
     </div>
+  );
+}
+
+function ProductsPage() {
+  return (
+    <Suspense>
+      <ProductsContent />
+    </Suspense>
   );
 }
 
