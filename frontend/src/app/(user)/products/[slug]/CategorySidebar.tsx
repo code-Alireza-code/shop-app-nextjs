@@ -1,8 +1,8 @@
 "use client";
 
 import { Category } from "@/types/Category";
-import ProductFilter from "../_components/ProductFilter";
-import ProductSort from "../_components/ProductSort";
+import ProductFilter from "../_/components/ProductFilter";
+import ProductSort from "../_/components/ProductSort";
 
 type Props = {
   categories: Category[];

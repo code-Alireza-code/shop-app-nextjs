@@ -1,7 +1,7 @@
 "use client";
 
 import TextField from "@/ui/TextField";
-import { toPersianDigits } from "@/utils/numberFormatter";
+import { toPersianNumbers } from "@/utils/numberFormatter";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -83,7 +83,7 @@ function CheckOtp({ setFormStep, phoneNumber }: CheckOtpProps) {
         کد تایید را وارد کنید
       </h1>
       <p className="text-black/60 text-sm mb-4">
-        کد تایید برای شماره {toPersianDigits(phoneNumber)} پیامک شد
+        کد تایید برای شماره {toPersianNumbers(phoneNumber)} پیامک شد
       </p>
       <form
         className="flex flex-col gap-y-4"
