@@ -6,6 +6,7 @@ import { BackendError } from "@/types/Error";
 import { Product } from "@/types/Product";
 import { toPersianNumbersWithComma } from "@/utils/numberFormatter";
 import { notFound } from "next/navigation";
+import AddToCart from "./AddToCart";
 
 export async function generateStaticParams() {
   const data = await getAllProductsApi();
@@ -55,14 +56,12 @@ async function SingleProductPage({ params }: Props) {
           <p className="text-lg font-bold">
             قیمت با تخفیف : {singleProduct.offPrice}
           </p>
-          <div className="bg-rose-500 px-2 py-0.5 rounded`-xl text-white text-sm">
+          <div className="bg-rose-500 px-2 py-0.5 rounded-xl text-white text-sm">
             {singleProduct.discount} %
           </div>
         </div>
       )}
-      <div>
-        <button className="btn btn--primary">افزودن به سبد خرید</button>
-      </div>
+      <AddToCart product={singleProduct} />
     </div>
   );
 }

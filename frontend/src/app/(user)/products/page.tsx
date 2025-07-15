@@ -6,7 +6,6 @@ import { useSearchParams } from "next/navigation";
 import { useProductsData } from "@/hooks/useProductsData";
 import toLocaleDateString from "@/utils/dateFormatter";
 import Link from "next/link";
-
 import React, { Suspense } from "react";
 
 function ProductsContent() {
