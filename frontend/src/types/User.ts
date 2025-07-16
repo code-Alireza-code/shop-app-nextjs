@@ -6,7 +6,15 @@ export interface User {
   resetLink: null;
   isVerifiedPhoneNumber: boolean;
   isActive: boolean;
-  Products: []; //! should be edited...;
+  cart?: {
+    products: {
+      quantity: number;
+      productId: string;
+      _id: string;
+    }[];
+    coupon: string | null;
+    _id: string;
+  };
   role: "ADMIN" | "USER";
   createdAt: string;
   updatedAt: string;
