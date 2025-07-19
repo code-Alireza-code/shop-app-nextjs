@@ -7,7 +7,7 @@ function Header() {
   const { isLaodingUser, user } = useGetUser();
   return (
     <header
-      className={`shadow-md mb-10 sticky top-0 transition-all duration-200 ${
+      className={`shadow-md mb-10 sticky top-0 transition-all duration-200 bg-white z-10  ${
         isLaodingUser ? "blur-md opacity-70" : "opacity-100 blur-0"
       }`}
     >

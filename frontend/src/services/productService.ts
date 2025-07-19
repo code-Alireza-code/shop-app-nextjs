@@ -7,3 +7,7 @@ export async function getAllProductsApi(query = "") {
 export async function getProductBySlugApi(slug: string) {
   return http.get(`/product/slug/${slug}`).then(({ data }) => data.data);
 }
+
+export async function likeProductApi(productId: string) {
+  return http.post(`/product/like/${productId}`).then(({ data }) => data.data);
+}

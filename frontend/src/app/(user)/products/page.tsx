@@ -7,6 +7,7 @@ import { useProductsData } from "@/hooks/useProductsData";
 import toLocaleDateString from "@/utils/dateFormatter";
 import Link from "next/link";
 import React, { Suspense } from "react";
+import LikeProduct from "./_/components/LikeProduct";
 
 function ProductsContent() {
   const searchParams = useSearchParams();
@@ -26,7 +27,8 @@ function ProductsContent() {
               key={product._id}
               className="hover:shadow-xl hover:scale-105 m-2"
             >
-              <div className="rounded-xl border text-center shadow-md p-4">
+              <div className="relative rounded-xl border text-center shadow-md p-4">
+                <LikeProduct product={product} />
                 <h2 className="font-bold text-xl mb-4">{product.title}</h2>
                 <div className="mb-4">
                   <span>تاریخ ساخت‌: </span>
