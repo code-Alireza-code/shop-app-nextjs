@@ -1,7 +1,9 @@
+import { Product } from "./Product";
+
 export interface User {
   _id: string;
   biography: string | null;
-  likedProducts: []; //! should be edited...
+  likedProducts: [] | string[];
   phoneNumber: string;
   resetLink: null;
   isVerifiedPhoneNumber: boolean;
@@ -54,4 +56,12 @@ export interface Cart {
   productDetail: ProductDetail[] | [];
   payDetail: PayDetail;
   coupon: null | string;
+}
+
+export interface UserList extends User {
+  otp: {
+    code: number;
+    expiresIn: string;
+  };
+  Products: Product[] | [];
 }
