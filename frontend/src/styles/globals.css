@@ -69,6 +69,31 @@
     @apply bg-rose-600 text-white;
   }
 }
+.rti--container {
+  width: 100% !important;
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  border-radius: 0.75rem !important;
+  color: rgb(var(--color-secondary-900)) !important;
+  background-color: rgb(var(--color-secondary-100) / 0.2) !important;
+  border-width: 2px !important;
+  border-color: #d1d5db !important;
+  outline: none !important;
+  transition-duration: 200ms !important;
+  transition-property: all !important;
+  transition-timing-function: ease-in-out !important;
+}
+.rti--container:hover {
+  border-color: rgb(var(--color-primary-300)) !important;
+}
+.rti--container:focus,
+.rti--container:focus-within {
+  outline: none !important;
+  border-color: rgb(var(--color-primary-300)) !important;
+  background-color: #fff !important;
+}
 
 html,
 body {
