@@ -1,3 +1,4 @@
+import { AddProductDataType } from "@/app/(admin)/admin/_/components/AddProductForm";
 import http from "./httpService";
 
 export async function getAllProductsApi(query = "") {
@@ -10,4 +11,8 @@ export async function getProductBySlugApi(slug: string) {
 
 export async function likeProductApi(productId: string) {
   return http.post(`/product/like/${productId}`).then(({ data }) => data.data);
+}
+
+export async function addProductApi(data: AddProductDataType) {
+  return http.post("/admin/product/add", data).then(({ data }) => data.data);
 }
