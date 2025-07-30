@@ -4,7 +4,7 @@ import {
   toPersianNumbers,
   toPersianNumbersWithComma,
 } from "@/utils/numberFormatter";
-import Link from "next/link";
+import ProductActions from "./ProductActions";
 
 type Props = { products: Product[] };
 
@@ -44,12 +44,7 @@ function ProductsTable({ products }: Props) {
                 {toPersianNumbers(product.countInStock.toString())}
               </td>
               <td className="table__td">
-                <Link
-                  className="text-primary-900 hover:underline"
-                  href={`/admin/products/${product._id}`}
-                >
-                  مشاهده جزئیات
-                </Link>
+                <ProductActions product={product} />
               </td>
             </tr>
           ))}
