@@ -30,3 +30,9 @@ export async function editProductApi({ data, productId }: EditProductApiProps) {
     .patch(`/admin/product/update/${productId}`, data)
     .then(({ data }) => data.data);
 }
+
+export async function removeProductApi(productId: string) {
+  return http
+    .delete(`/admin/product/remove/${productId}`)
+    .then(({ data }) => data.data);
+}
