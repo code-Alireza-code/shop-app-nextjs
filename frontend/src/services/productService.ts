@@ -16,3 +16,17 @@ export async function likeProductApi(productId: string) {
 export async function addProductApi(data: AddProductDataType) {
   return http.post("/admin/product/add", data).then(({ data }) => data.data);
 }
+
+export async function getProdutByIdApi(productId: string) {
+  return http.get(`product/${productId}`).then(({ data }) => data.data);
+}
+
+type EditProductApiProps = {
+  data: AddProductDataType;
+  productId: string;
+};
+export async function editProductApi({ data, productId }: EditProductApiProps) {
+  return http
+    .patch(`/admin/product/update/${productId}`, data)
+    .then(({ data }) => data.data);
+}
