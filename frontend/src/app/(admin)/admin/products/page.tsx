@@ -21,7 +21,6 @@ function ProductsPage() {
           </button>
         </Link>
       </div>
-
       <ProductsTable products={products} />
     </div>
   );
