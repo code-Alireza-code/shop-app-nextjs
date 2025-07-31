@@ -1,5 +1,6 @@
 import { categoryListTableTHeads } from "@/constants/tableHeads";
 import { Category } from "@/types/Category";
+import CategoryActions from "./CategoryActions";
 
 type Props = {
   categories: Category[];
@@ -30,7 +31,9 @@ function CategoriesTable({ categories }: Props) {
               <td className="table__td">
                 <span className="badge badge--secondary">{category.type}</span>
               </td>
-              <td className="table__td">عملیات</td>
+              <td className="table__td">
+                <CategoryActions category={category} />
+              </td>
             </tr>
           ))}
         </tbody>
