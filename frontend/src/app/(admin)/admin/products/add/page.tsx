@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import AddProductForm from "../../_/components/AddProductForm";
+import AddProductForm from "../_/components/AddProductForm";
 import Loading from "@/ui/Loading";
 
 function page() {

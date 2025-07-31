@@ -1,4 +1,4 @@
-import { AddProductDataType } from "@/app/(admin)/admin/_/components/AddProductForm";
+import { AddProductDataType } from "@/app/(admin)/admin/products/_/components/AddProductForm";
 import http from "./httpService";
 
 export async function getAllProductsApi(query = "") {

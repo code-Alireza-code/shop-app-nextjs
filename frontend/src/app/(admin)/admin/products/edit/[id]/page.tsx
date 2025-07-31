@@ -1,7 +1,7 @@
 "use client";
 
 import { useGetProductById } from "@/hooks/useProduct";
-import AddProductForm from "../../../_/components/AddProductForm";
+import AddProductForm from "../../_/components/AddProductForm";
 import { useParams } from "next/navigation";
 import Loading from "@/ui/Loading";
 

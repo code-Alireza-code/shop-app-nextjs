@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { IoMdAddCircleOutline } from "react-icons/io";
-import CategoriesTable from "../_/components/CategoriesTable";
+import CategoriesTable from "./_/components/CategoriesTable";
 import { useGetAllCategories } from "@/hooks/useCategory";
 import Loading from "@/ui/Loading";
 

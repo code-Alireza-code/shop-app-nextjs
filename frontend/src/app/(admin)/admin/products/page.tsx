@@ -2,7 +2,7 @@
 
 import { useGetAllProducts } from "@/hooks/useProduct";
 import Loading from "@/ui/Loading";
-import ProductsTable from "../_/components/ProductsTable";
+import ProductsTable from "./_/components/ProductsTable";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import Link from "next/link";
 
