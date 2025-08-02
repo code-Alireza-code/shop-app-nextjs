@@ -23,3 +23,9 @@ export async function editCategoryApi({ data, id }: editCategoryApiProps) {
     .patch(`/admin/category/update/${id}`, data)
     .then(({ data }) => data.data);
 }
+
+export async function deleteCategoryApi(id: string) {
+  return http
+    .delete(`/admin/category/remove/${id}`)
+    .then(({ data }) => data.data);
+}
