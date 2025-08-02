@@ -8,3 +8,18 @@ export async function getAllCategoriesApi(query = "") {
 export async function addCategoryApi(data: AddCategoryDataType) {
   return http.post("/admin/category/add", data).then(({ data }) => data.data);
 }
+
+export async function getCategoryByIdApi(categoryId: string) {
+  return http.get(`/category/${categoryId}`).then(({ data }) => data.data);
+}
+
+type editCategoryApiProps = {
+  data: AddCategoryDataType;
+  id: string;
+};
+
+export async function editCategoryApi({ data, id }: editCategoryApiProps) {
+  return http
+    .patch(`/admin/category/update/${id}`, data)
+    .then(({ data }) => data.data);
+}

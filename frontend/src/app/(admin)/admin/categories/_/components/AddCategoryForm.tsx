@@ -8,6 +8,9 @@ import { useForm } from "react-hook-form";
 import { FaArrowLeft } from "react-icons/fa";
 import { z } from "zod";
 import { useAddCategory } from "../hooks/useAddCategory";
+import { Category } from "@/types/Category";
+import { useEffect } from "react";
+import { useEditCategory } from "../hooks/useEditCategory";
 
 const errMessage = "این قسمت نباید خالی باشد !";
 
@@ -29,24 +32,53 @@ const validationSchema = z.object({
 
 export type AddCategoryDataType = z.infer<typeof validationSchema>;
 
-function AddCategoryForm() {
+type Props = {
+  category?: Category;
+};
+
+function AddCategoryForm({ category }: Props) {
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm<AddCategoryDataType>({
     resolver: zodResolver(validationSchema),
     defaultValues: { type: "product" },
   });
+
+  useEffect(() => {
+    if (category) {
+      reset({
+        description: category.description,
+        title: category.title,
+        englishTitle: category.englishTitle,
+        type: category.type,
+      });
+    }
+  }, [reset, category]);
+
   const router = useRouter();
   const { addCategory, isAddingCategory } = useAddCategory();
+  const { editCategory, isEditingCategory } = useEditCategory();
 
   const handleAddCategory = async (formData: AddCategoryDataType) => {
-    await addCategory(formData, {
-      onSuccess: () => {
-        router.push("/admin/categories");
-      },
-    });
+    if (category) {
+      await editCategory(
+        { data: formData, id: category._id },
+        {
+          onSuccess: () => {
+            router.push("/admin/categories");
+          },
+        }
+      );
+    } else {
+      await addCategory(formData, {
+        onSuccess: () => {
+          router.push("/admin/categories");
+        },
+      });
+    }
   };
   return (
     <div className="max-w-md">
@@ -82,10 +114,16 @@ function AddCategoryForm() {
         />
         <button
           type="submit"
-          disabled={isAddingCategory}
+          disabled={isAddingCategory || isEditingCategory}
           className="btn btn--primary disabled:bg-gray-400 disabled:shadow-none"
         >
-          {isAddingCategory ? "درحال ارسال اطلاعات..." : "ایجاد دسته بندی"}
+          {category
+            ? "ویرایش دسته بندی"
+            : isEditingCategory
+            ? "درحال ویرایش دسته بندی"
+            : isAddingCategory
+            ? "درحال ایجاد دسته بندی"
+            : "ایجاد دسته بندی"}
         </button>
       </form>
     </div>
