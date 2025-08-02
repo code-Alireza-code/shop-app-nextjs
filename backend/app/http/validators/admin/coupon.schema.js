@@ -10,7 +10,7 @@ const addCouponSchema = Joi.object({
     .error(createHttpError.BadRequest("کد تخفیف صحیح نمیباشد")),
   type: Joi.string()
     .required()
-    .valid("fixedProduct", "percent")
+    .valid("fixedPrice", "percent")
     .error(createHttpError.BadRequest("نوع کد تخفیف را به درستی وارد کنید")),
   amount: Joi.number()
     .required()

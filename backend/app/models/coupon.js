@@ -7,8 +7,8 @@ const CouponSchema = new mongoose.Schema(
     type: {
       type: String,
       required: true,
-      default: "fixedProduct",
-      enum: ["fixedProduct", "percent"],
+      default: "fixedPrice",
+      enum: ["fixedPrice", "percent"],
     },
     amount: { type: Number, required: true }, // if is percent, then number must be ≤ 100, else it’s amount of discount
     expireDate: { type: Date, required: true, default: undefined },
