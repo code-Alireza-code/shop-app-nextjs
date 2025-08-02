@@ -17,7 +17,7 @@ function CategoriesPage() {
         <Link href="/admin/categories/add">
           <button className="btn btn--secondary text-sm flex gap-x-2 items-center">
             <IoMdAddCircleOutline className="size-5" />
-            <span>افزودن محصول</span>
+            <span>افزودن دسته بندی</span>
           </button>
         </Link>
       </div>
