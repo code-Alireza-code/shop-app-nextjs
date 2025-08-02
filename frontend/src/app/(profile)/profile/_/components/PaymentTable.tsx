@@ -1,5 +1,5 @@
 import { userPaymentTHeads } from "@/constants/tableHeads";
-import { Payment } from "@/types/Paymemt";
+import { UserPayment } from "@/types/Payment";
 import toLocaleDateString from "@/utils/dateFormatter";
 import {
   toPersianNumbers,
@@ -7,7 +7,7 @@ import {
 } from "@/utils/numberFormatter";
 
 type Props = {
-  payments: Payment[];
+  payments: UserPayment[];
 };
 
 function PaymentTable({ payments }: Props) {

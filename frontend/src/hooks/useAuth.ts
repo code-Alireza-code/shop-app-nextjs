@@ -1,5 +1,5 @@
 import { getUserApi } from "@/services/authService";
-import { Payment } from "@/types/Paymemt";
+import { UserPayment } from "@/types/Payment";
 import { Cart, User } from "@/types/User";
 import { useQuery } from "@tanstack/react-query";
 
@@ -14,7 +14,7 @@ export const useGetUser = () => {
     user,
     cart,
     payments,
-  }: { user: User; cart: Cart; payments: Payment[] } = data || {};
+  }: { user: User; cart: Cart; payments: UserPayment[] } = data || {};
 
   return { user, cart, payments, isLaodingUser };
 };
