@@ -72,7 +72,7 @@ function AdminSidebar() {
         </li>
         <li>
           <Link
-            href="/profile/coupons"
+            href="/admin/coupons"
             className="flex items-center gap-x-2 px-1 py-2 rounded-lg hover:bg-primary-700 hover:text-white transition-all duration-300 ease-out"
           >
             <RiCoupon3Fill className="size-5" />
@@ -81,7 +81,7 @@ function AdminSidebar() {
         </li>
         <li>
           <Link
-            href="/profile/payments"
+            href="/admin/payments"
             className="flex items-center gap-x-2 px-1 py-2 rounded-lg hover:bg-primary-700 hover:text-white transition-all duration-300 ease-out"
           >
             <MdPayments className="size-5" />
