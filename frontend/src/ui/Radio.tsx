@@ -2,10 +2,10 @@ import { ChangeEvent, InputHTMLAttributes } from "react";
 
 type RadioProps = {
   name: string;
-  id: string;
+  id?: string;
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  checked: boolean;
+  checked?: boolean;
   label: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 

@@ -15,7 +15,7 @@ function CouponsPage() {
     <div>
       <div className="flex items-center justify-between pt-2 mb-5">
         <h1 className="text-xl font-bold">کدهای تخفیف</h1>
-        <Link href="/admin/products/add">
+        <Link href="/admin/coupons/add">
           <button className="btn btn--secondary text-sm flex gap-x-2 items-center">
             <IoMdAddCircleOutline className="size-5" />
             <span>افزودن کوپن</span>
