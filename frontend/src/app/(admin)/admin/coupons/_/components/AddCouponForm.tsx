@@ -18,6 +18,9 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAddCoupon } from "../hooks/useAddCopuon";
 import { useRouter } from "next/navigation";
+import { Coupon } from "@/types/Coupon";
+import { useEffect } from "react";
+import { useEditCoupon } from "../hooks/useEditCoupon";
 
 const requiredError = "این قسمت نباید خالی باشد !";
 const persianToEnglish = (str: string) =>
@@ -43,12 +46,17 @@ const validationSchema = z.object({
 
 export type AddCouponFormDataType = z.infer<typeof validationSchema>;
 
-function AddCouponForm() {
+type Props = {
+  coupon?: Coupon;
+};
+
+function AddCouponForm({ coupon }: Props) {
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = useForm<AddCouponFormDataType>({
     defaultValues: {
       expireDate: new Date().toISOString(),
@@ -61,21 +69,48 @@ function AddCouponForm() {
     return { value: p._id, label: p.title };
   });
 
+  useEffect(() => {
+    if (coupon) {
+      reset({
+        amount: coupon.amount.toString(),
+        code: coupon.code,
+        expireDate: coupon.expireDate,
+        productIds: coupon.productIds.map((pId) => pId._id),
+        type: coupon.type,
+        usageLimit: coupon.usageLimit.toString(),
+      });
+    }
+  }, [reset, coupon]);
+
   const { addCoupon, isAddingCoupon } = useAddCoupon();
+  const { editCoupon, isEditingCoupon } = useEditCoupon();
   const router = useRouter();
 
   const handleAddCoupon = async (formData: AddCouponFormDataType) => {
-    await addCoupon(formData, {
-      onSuccess: () => {
-        router.push("/admin/coupons");
-      },
-    });
+    if (coupon) {
+      await editCoupon(
+        { data: formData, couponId: coupon._id },
+        {
+          onSuccess: () => {
+            router.push("/admin/coupons");
+          },
+        }
+      );
+    } else {
+      await addCoupon(formData, {
+        onSuccess: () => {
+          router.push("/admin/coupons");
+        },
+      });
+    }
   };
 
   return (
     <div className="max-w-md">
       <div className="flex items-center justify-between mt-1">
-        <h1 className="font-semibold text-lg">اضافه کردن کوپن</h1>
+        <h1 className="font-semibold text-lg">
+          {coupon ? "ویرایش کد تخفیف" : "افزودن کد تخفیف"}
+        </h1>
         <Link href="/admin/coupons" className="p-1">
           <FaArrowLeft className="size-4" />
         </Link>
@@ -118,42 +153,48 @@ function AddCouponForm() {
           errors={errors}
         />
         <div className="flex flex-col gap-y-1">
-          <label
-            className="text-secondary-900 text-sm"
-            htmlFor="react-select-products"
-          >
-            کالاهای شامل تخفیف
-          </label>
-          <Controller
-            name="productIds"
-            control={control}
-            render={({ field }) => (
-              <Select
-                id="react-select-products"
-                isMulti
-                isSearchable
-                placeholder="افزودن کالا ها ..."
-                components={makeAnimated()}
-                options={productOptions}
-                className="text-sm"
-                classNamePrefix="tw-select"
-                onChange={(selected) => {
-                  return field.onChange(
-                    selected && Array.isArray(selected)
-                      ? selected.map((opt) => opt.value)
-                      : []
-                  );
-                }}
-              />
+          <div className="flex flex-col gap-y-1">
+            <label
+              className="text-secondary-900 text-sm"
+              htmlFor="react-select-products"
+            >
+              کالاهای شامل تخفیف
+            </label>
+            <Controller
+              name="productIds"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  id="react-select-products"
+                  isMulti
+                  isSearchable
+                  placeholder="افزودن کالا ها ..."
+                  components={makeAnimated()}
+                  options={productOptions}
+                  className="text-sm"
+                  classNamePrefix="tw-select"
+                  value={
+                    productOptions &&
+                    productOptions.filter((opt) =>
+                      field.value?.includes(opt.value)
+                    )
+                  }
+                  onChange={(selected) => {
+                    return field.onChange(
+                      selected && Array.isArray(selected)
+                        ? selected.map((opt) => opt.value)
+                        : []
+                    );
+                  }}
+                />
+              )}
+            />
+            {errors && errors.productIds && (
+              <span className="text-error mt-1 text-xs block">
+                {errors.productIds?.message as string}
+              </span>
             )}
-          />
-          {errors && errors.productIds && (
-            <span className="text-error mt-1 text-xs block">
-              {errors.productIds?.message as string}
-            </span>
-          )}
-        </div>
-        <div className="flex flex-col gap-y-1">
+          </div>
           <label className="text-secondary-900 text-sm" htmlFor="date-picker">
             تاریخ انقضا کد تخفیف
           </label>
@@ -187,7 +228,18 @@ function AddCouponForm() {
             </span>
           )}
         </div>
-        <button className="btn btn--primary">ایجاد کد تخفیف</button>
+        <button
+          className="btn btn--primary disabled:cursor-not-allowed disabled:bg-gray-400 disabled:shadow-none"
+          disabled={isAddingCoupon || isEditingCoupon}
+        >
+          {coupon
+            ? isEditingCoupon
+              ? "درحال ویرایش کد تخفیف"
+              : "ویرایش کد تخفیف"
+            : isAddingCoupon
+            ? "درحال ایجاد کد تخفیف"
+            : "ایجاد کد تخفیف"}
+        </button>
       </form>
     </div>
   );
