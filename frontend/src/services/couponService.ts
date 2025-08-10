@@ -22,3 +22,9 @@ export async function editCouponApi({ data, couponId }: editCouponPropsType) {
     .patch(`/admin/coupon/update/${couponId}`, data)
     .then(({ data }) => data.data);
 }
+
+export async function removeCouponApi(couponId: string) {
+  return http
+    .delete(`/admin/coupon/remove/${couponId}`)
+    .then(({ data }) => data.data);
+}
