@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fa" dir="rtl">
-      <body className={`${vazirFont.className} font-sans antialiased`}>
+      <body className={`${vazirFont.variable} font-sans antialiased`}>
         <Providers>
           <Header />
           <div className="container xl:max-w-screen-xl">{children}</div>
