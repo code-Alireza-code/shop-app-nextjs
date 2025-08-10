@@ -25,7 +25,7 @@ function Header() {
           </li>
           <li>
             <Link href="/cart" className="block py-2">
-              سبد خرید
+              سبد خرید ({user?.cart?.products.length ?? 0})
             </Link>
           </li>
           <li>
