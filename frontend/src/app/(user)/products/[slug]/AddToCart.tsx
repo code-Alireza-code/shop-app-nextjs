@@ -38,7 +38,9 @@ function AddToCart({ product }: Props) {
       {cart && cart.productDetail.find((p) => p._id === product._id) ? (
         <div className="flex items-center gap-x-4 px-4 py-3 border rounded-xl w-[max-content]">
           <button
-            disabled={isAddingToCart}
+            disabled={
+              isAddingToCart || product.countInStock <= (cartQuantity as number)
+            }
             className="text-primary-800 rounded-full p-1.5 hover:bg-primary-200 disabled:text-gray-800 disabled:bg-gray-100"
           >
             <FaPlus onClick={handleAddToCart} className="size-4" />
@@ -72,5 +74,3 @@ function AddToCart({ product }: Props) {
 }
 
 export default AddToCart;
-
-// # : commit message :"add add to cart btns + functionality + related types "
