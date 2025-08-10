@@ -61,7 +61,10 @@ function CheckOtp({ setFormStep, phoneNumber }: CheckOtpProps) {
       { ...formdata, phoneNumber },
       {
         onSuccess: ({ user }) => {
-          if (user.isActive) return router.push("/");
+          if (user.isActive) {
+            router.push("/");
+            return window.location.reload();
+          }
           router.push("/complete-profile");
         },
       }
