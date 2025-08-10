@@ -20,7 +20,7 @@ function CouponActions({ coupon }: Props) {
   };
   return (
     <div className="flex items-center justify-center gap-x-4">
-      <Link className="text-primary-900 " href={`/admin/couopns/${coupon._id}`}>
+      <Link className="text-primary-900 " href={`/admin/coupons/${coupon._id}`}>
         <MdInfo className="size-5" />
       </Link>
       <Link
